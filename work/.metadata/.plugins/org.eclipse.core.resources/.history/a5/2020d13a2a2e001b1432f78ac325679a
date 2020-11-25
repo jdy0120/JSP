@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>좋아하는 취미</h2>
+<form action="multi" method="post">
+	<p>이름 : <input type="text" value="name"></p>
+	<p>결혼여부 : <input type="radio" value="marry">기혼
+	<input type="radio" value="marry">미혼</p>
+	<p>취미</p>
+	<input type="checkbox" value="hobby">영화
+	<input type="checkbox" value="hobby">독서
+	<input type="checkbox" value="hobby">음악
+	<input type="checkbox" value="hobby">자전거
+	<input type="checkbox" value="hobby">게임
+	<input type="checkbox" value="hobby">헬스
+	<button>전송</button>
+</form>
+</body>
+</html>

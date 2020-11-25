@@ -1,0 +1,29 @@
+import java.io.IOException;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/test")
+public class TestServlet extends HttpServlet {
+// 서블릿은 무조건 HttpServlet을 상속받아야 함
+	private static final long serialVersionUID = 1L;
+       
+
+    public TestServlet() {
+        super(); // 상위클래스의 생성자를 호출
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String txt = request.getParameter("txtGet");
+		String gender = request.getParameter("gender");
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("doPost() 실행");
+	}
+
+}
