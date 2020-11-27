@@ -158,4 +158,51 @@ java.net.URL getResource(String path) : 지정한 경로를 url객체로 리턴
 void		clear() : 출력 버퍼에 저장된 내용을 비움
 void		flush() : 현재 버퍼에 저장되어 있는 내용을 클라이언트로 전송하고 버퍼를 비움\
 void		flush() : 현재 버퍼에 저장되어 있는 내용을 클라이언트로 전송하고 버퍼를 비움
-int		getBufferSize() : 
+int		getBufferSize() : 출력 버퍼의 
+
+
+파일 이동 방법
+1. redirect 방법
+ - response객체의 sendRedirect(url)메소드를 이용하여 이동시킴
+
+2. dispatch 방법
+ - pageContext객체의 forward(url) 메소드를 이용하여 이동시킴
+ - 이동하더라도 주소의 파일명이 변하지 않으며, 현재 페이지의 요청(request객체)과 응답(response객체) 정보에 대한 제어권을
+이동한 페이지로 넘어감
+ - 주로 모델2(MVC)에서 자주 사용됨
+
+ - 두 방식 모두 히스토리에 남지 않는 방식으로 '뒤로 가기'가 불가능
+
+영역(scope) 객체와 속성(attribute)
+ - 내장 객체들 중 application, session, request, page 객체들은 해당 객체에 정의된 유효 범위안에서 필요한 객체들을 저장하고 읽어 들임으로써
+ 서로 공유할 수 있는 특정 영역을 가짐
+
+ - 공유되는 데이터를 속성(attribute)이라 하고, 속성을 공유할 수 있는 유효 범위를 영역(scope)라고 함
+
+ - 각 객체의 유효범위(영역)
+    page : 해당 페이지 내에서만 속성을 사용할 수 있음
+     - page객체가 아닌 pageContext객체를 통해 속성을 사용함
+     - 오직 한 페이지내에서만 사용가능
+
+    request : 클라이언트의 요청이 처리되는 동안 속성을 사용할 수 있음
+     - 요청을 받은 페이지나 제어권을 물려받은 페이지에서 사용가능
+     - 거의 한 페이지내에서만 사용하지만 forward시킬경우 request제어권을 다음 페이지로 넘기기 때문에 다음 페이지
+      에서도 request객체의 속성(attribute)을 사용할 수 있음
+
+    session : 세션이 유지되는 동안 속성을 사용할 수 있음
+     - 세션이 끊어지지 않은 이상 모든 페이지에서 사용가능
+     - 페이지에 상관없이 데이터를 유지할 수 있음
+
+    application : 해당 웹 애플리케이션(사이트)이 실행되고 있는 동안 속성을 사용할 수 있음
+     - 웹서버를 끄지 않는 이상 모든 페이지에서 사용가능(실제로는 사용빈도가 낮음)
+     - 페이지에 상관없이 데이터를 유지할 수 있음    
+
+ - 주요 메소드 : 네 영역 객체에서 동일하게 정의되어 있음
+리턴		메소드명 및 설명
+Object		getAttribute(String key) : 지정된 key에 해당하는 속성값을 Object형으로 리턴 - 없으면 null 리턴
+Enumeration 	getAttributeNames() : 해당 영역에 등록되어 있는 모든 속성들의 이름을 Enumeration 타입으로 리턴
+void		setAttribute(String key, Object obj) : 해당 영역에 key의 이름으로 obj값을 등록
+void		removeAttribute(String key) : 지정된 key에 해당하는 속성값을 삭제
+
+
+
