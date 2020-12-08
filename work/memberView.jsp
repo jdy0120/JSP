@@ -34,7 +34,7 @@ try {
 		last = rs.getString("ml_last");
 		status = rs.getString("ml_status");
 		
-		if (gender.equals("M")) gender = "남자";
+		if (gender.equals("M"))	gender = "남자";
 		else					gender = "여자";
 
 	} else {	// 검색된 결과가 없을 경우
@@ -74,7 +74,8 @@ try {
 <tr>
 <th>현상태</th>
 <td colspan="3">
-	<select name="status" <% if (status.equals("c")) {%> disabled="disabled" <%}%>>
+	<select name="status" 
+		<% if (status.equals("c")) { %>disabled="disabled"<% } %>>
 		<option value="a" <% if (status.equals("a")) { %>
 			selected="selected"<% } %>>일반 회원</option>
 		<option value="b" <% if (status.equals("b")) { %>
@@ -82,7 +83,7 @@ try {
 		<option value="c" <% if (status.equals("c")) { %>
 			selected="selected"<% } %>>탈퇴 회원</option>
 	</select>
-	<% if(!status.equals("c")) {%>
+	<% if (!status.equals("c")) { %>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="submit" value="상태 수정" />
 	<% } %>
